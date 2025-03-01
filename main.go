@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
+
+	"github.com/atotto/clipboard"
 )
 
 func generatePassword(length int) string {
@@ -14,7 +17,6 @@ func generatePassword(length int) string {
 	allChars := lowerCase + upperCase + numbers + special
 
 	mandatory := []byte{
-		upperCase[rand.Intn(len(upperCase))],
 		numbers[rand.Intn(len(numbers))],
 		special[rand.Intn(len(special))],
 	}
@@ -34,12 +36,32 @@ func generatePassword(length int) string {
 }
 
 func main() {
-	fmt.Println("Bem-vindo(a) ao seu gerador automático de senha:")
-	fmt.Print("Informe quantos carácteres você quer na sua senha:")
-	defer fmt.Println("Senha gerada com sucesso!")
+	fmt.Println("Bem-vindo ao Gerador de Senhas!")
+	fmt.Println("Escolha o tamanho da senha (mínimo 6 caracteres):")
 
-	var lenPassword int
-	fmt.Scan(&lenPassword)
-	password := generatePassword(lenPassword)
-	fmt.Println(password)
+	var length int
+
+	for {
+		fmt.Print("Tamanho da senha: ")
+		_, err := fmt.Scan(&length)
+		if err != nil || length < 6 {
+			fmt.Println("Por favor, insira um número válido maior ou igual a 6.")
+			continue
+		}
+		break
+	}
+
+	fmt.Println("Gerando sua senha, aguarde...")
+	time.Sleep(time.Second * 5)
+
+	senha := generatePassword(length)
+	fmt.Printf("Senha gerada com sucesso: %s\n", senha)
+
+	err := clipboard.WriteAll(senha)
+	if err != nil {
+		fmt.Println("Erro ao copiar para área de transferência!")
+		return
+	}
+
+	fmt.Println("Sua senha foi copiada para a área de transferência")
 }
