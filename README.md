@@ -1,41 +1,41 @@
 # Gerador de Senhas
 
-Esta aplicação é um gerador automático de senhas escrito em Go. Ele gera senhas seguras contendo letras maiúsculas, minúsculas, números e caracteres especiais.
+Este é um simples gerador de senhas escrito em Go. Ele gera uma senha aleatória com letras maiúsculas, minúsculas, números e caracteres especiais. A senha gerada é copiada automaticamente para a área de transferência.
 
-## Como Usar
+## Como usar
 
-1. Certifique-se de ter o Go instalado em sua máquina. Você pode baixar e instalar o Go a partir do [site oficial](https://golang.org/dl/).
-
-2. Clone este repositório ou baixe os arquivos do projeto.
-
-3. Navegue até o diretório do projeto no seu terminal.
-
-4. Execute o comando abaixo para compilar e rodar a aplicação:
-
+1. Clone o repositório:
     ```sh
-    go run main.go
+    git clone <URL_DO_REPOSITORIO>
+    cd password-generator
     ```
 
-5. Ao executar a aplicação, você verá a seguinte mensagem no terminal:
-
-    ```
-    Bem-vindo(a) ao seu gerador automático de senha:
-    Informe quantos carácteres você quer na sua senha:
+2. Compile o código:
+    ```sh
+    go build -o password-generator main.go
     ```
 
-6. Digite o número de caracteres desejados para a sua senha e pressione Enter.
+3. Execute o programa:
+    ```sh
+    ./password-generator
+    ```
 
-7. A aplicação gerará e exibirá uma senha segura no terminal.
+4. Siga as instruções no terminal para gerar uma senha.
 
-## Exemplo
+## Requisitos
 
+- Go 1.16 ou superior
+- Biblioteca `github.com/atotto/clipboard`
+
+## Instalação da biblioteca
+
+Para instalar a biblioteca `clipboard`, execute:
 ```sh
-Bem-vindo(a) ao seu gerador automático de senha:
-Informe quantos carácteres você quer na sua senha: 12
-Senha gerada com sucesso!
-A1b2C3d4E5!@
+go get github.com/atotto/clipboard
 ```
 
-## Contribuição
+## Funcionalidades
 
-Se você quiser contribuir para este projeto, sinta-se à vontade para abrir um pull request ou relatar problemas na seção de issues.
+- Geração de senhas com comprimento mínimo de 6 caracteres.
+- Inclusão obrigatória de pelo menos um número e um caractere especial.
+- Copia automaticamente a senha gerada para a área de transferência.
